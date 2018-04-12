@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.multipart.saveDir" value="/upload"/> <!-- 文件临时存放路径 -->
+	<package name="actionme" extends="struts-default,json-default" namespace="/">
+	    <action name="collectionAction" class="com.jiafang.Action.CollectionActin" method="execute">
+		</action>
+		<action name="collectionlist" class="com.jiafang.Action.collectionList" method="execute">
+		  <result name="success">
+		      /collectionHome.jsp
+		  </result>
+		</action>
+		<action name="loginAction" class="com.jiafang.Action.LoginAction" method="execute">
+		</action>
+		<action name="register" class="com.jiafang.Action.RegisterAction" method="execute">
+		</action>
+		<action name="NEWSDeiltusAction" class="com.jiafang.Action.SelectNEWSDeiltus" method="execute">
+		<result name="success">
+		  /news_detail.jsp
+		</result>
+		</action>
+		<action name="SerachListAction" class="com.jiafang.Action.SerachListAction">
+         <result name="success">/listing.jsp</result>
+       </action> 
+		<action name="upload" class="com.jiafang.Action.UploadAction">  
+  
+           <interceptor-ref name="fileUpload">  
+              <!-- 限制上传文件的格式 -->  
+              <param name="allowedTypes">image/JPEG,image/bmp,image/png,image/gif,image/jpeg</param>  
+              <param name="maximumSize">10485760</param>  
+           </interceptor-ref>  
+           <!-- 当添加一个拦截器的时候，那么默认的拦截器必须手动添加 -->  
+           <interceptor-ref name="defaultStack"></interceptor-ref>  
+           <!-- 依赖注入属性 -->  
+           <!-- 设置上传文件的路径 -->  
+           <param name="savePath">/upload</param>  
+           <result type="json"> 
+		      <param name="root">dataMap</param> 
+          </result>  
+       </action> 
+       <action name="application" class="com.jiafang.Action.ApplicationAction">
+       </action>
+       <action name="contact" class="com.jiafang.Action.ContantAction">
+       </action> 
+       <action name="Indexaction" class="com.jiafang.Action.IndexAction">
+         <result name="success">/index.jsp</result>
+       </action>
+       <action name="property_detail" class="com.jiafang.Action.SelectpropertyAction">
+         <result name="success">/property_detail.jsp</result>
+       </action> 
+       <action name="PageList" class="com.jiafang.Action.PageLIstAction">
+         <result name="success">/listing.jsp</result>
+       </action>  
+        <action name="newsPageList" class="com.jiafang.Action.ListNEWSAction">
+         <result name="success">/news.jsp</result>
+       </action>  
+       
+       <!-- 后台 -->
+       <action name="alterHomeAction" class="com.jiafangHT.Action.HTAlterHomeAction" method="execute">
+       </action>
+       <action name="htloginAction" class="com.jiafangHT.Action.HTLoginAction" method="execute">
+		</action>
+		<action name="alterNewsAction" class="com.jiafangHT.Action.HTAlterNewsAction" method="execute">
+		</action>
+		<action name="addHomeAction" class="com.jiafangHT.Action.HTAddHomeAction" method="execute">
+		</action>
+		<action name="addAdminAction" class="com.jiafangHT.Action.HTAddManageUserAction" method="execute">
+		</action>
+		<action name="selectAdminAction" class="com.jiafangHT.Action.HTSelectAdminAction" method="execute">
+		   <result name="success">
+		      /admin/manage-user.jsp
+		   </result>
+		</action>
+       <action name="deleteAdminAction" class="com.jiafangHT.Action.HTDeleteAdminAction" method="execute">
+		</action>
+		<action name="selectHomeAction" class="com.jiafangHT.Action.HTSelectHomeList" method="execute">
+		   <result name="success">
+		      /admin/homelist.jsp
+		   </result>
+		</action>
+		<action name="deleteHomeAction" class="com.jiafangHT.Action.HTDeleteHomeAction" method="execute">
+		</action>
+		<action name="selectHomeDeiltusAction" class="com.jiafangHT.Action.HTSelectHomeDeiltusAction" method="execute">
+		  <result name="success">
+		     /admin/alter-home.jsp
+		  </result>
+		</action>
+		<action name="hotrecommendAction" class="com.jiafangHT.Action.HTHotRecommedAction" method="execute">
+		 <result name="success">
+		     /admin/recommend.jsp
+		  </result>
+		</action>
+		<action name="setrecommendAction" class="com.jiafangHT.Action.HTSetHotRecommendAction" method="execute">
+		 <result type="redirectAction" name="success">hotrecommendAction</result>  
+		</action>
+		<action name="selectleixingAction" class="com.jiafangHT.Action.HTSelectLeixing" method="execute">
+		</action>
+		<action name="selectlContantAction" class="com.jiafangHT.Action.HTlistContact" method="execute">
+			<result name="success">
+		     /admin/jf_contact.jsp
+		  </result>
+		</action>
+		<action name="selectlContantDEILTUS" class="com.jiafangHT.Action.HTcontactDeiltus" method="execute">
+			<result name="success">
+		     /admin/contact.jsp
+		  </result>
+		</action>
+		<action name="deletecontantAction" class="com.jiafangHT.Action.HTdeletecontant" method="execute">
+		</action>
+		<action name="selectApplicationtAction" class="com.jiafangHT.Action.HTSelectApplication" method="execute">
+		<result name="success">
+		     /admin/application.jsp
+		  </result>
+		</action>
+		<action name="deleteApplicationAction" class="com.jiafangHT.Action.HTDeleteApplication" method="execute">
+		</action>
+		<action name="selectApplicationtdeiltus" class="com.jiafangHT.Action.HTSelectApplicationDeiltus" method="execute">
+		<result name="success">
+		     /admin/applicationxq.jsp
+		  </result>
+		</action>
+		<action name="addnewsAction" class="com.jiafangHT.Action.HTAddNewsZXAction" method="execute">
+		</action>
+		<action name="selectnewsZXlist" class="com.jiafangHT.Action.HTSelectNewsList" method="execute">
+		<result name="success">
+		     /admin/news.jsp
+		  </result>
+		</action>
+		<action name="deletenewsZXlist" class="com.jiafangHT.Action.HTDeleteNews" method="execute">
+		</action>
+		<action name="indexaction" class="com.jiafangHT.Action.HTIndexAction" method="execute">
+		<result name="success">
+		     /admin/jf_index.jsp
+		  </result>
+		</action>
+		<action name="adminphoto" class="com.jiafangHT.Action.HTAdminPhoto" method="execute">
+		</action>
+	   <action name="adminloginout" class="com.jiafangHT.Action.HTLoginOUT">
+	      <result name="success">
+		     /admin/jf_login.jsp
+		  </result>
+	   </action>
+	   <action name="setGoodSale" class="com.jiafangHT.Action.HTSetGoodSaleAction">
+	      <result name="success">
+		     /admin/CustomerSales.jsp
+		  </result>
+	   </action>
+	   <action name="setcustomer" class="com.jiafangHT.Action.HTSetCustomer">
+	      <result name="success">
+		     /admin/CustomerSales.jsp
+		  </result>
+	   </action>
+	   <action name="setCustomerSALE" class="com.jiafangHT.Action.HTCustomerSalesAction">
+	      <result name="success">
+		     /admin/CustomerSales.jsp
+		  </result>
+	   </action>
+	   <action name="selectLeaedlist" class="com.jiafangHT.Action.HTSelectLeaedHomeList">
+	      <result name="success">
+		     /admin/Leasedhomelist.jsp
+		  </result>
+	   </action>
+	   <action name="DeleteLeaedHome" class="com.jiafangHT.Action.HTDeleteLeaedHomeAction">
+	   </action>
+	    <action name="SelectLeaedHomeDeiltus" class="com.jiafangHT.Action.HTSelectLeaedHomeDeiltusAction">
+	      <result name="success">
+		     /admin/alter-Leasedhome.jsp
+		  </result>
+	   </action>
+	   <action name="HTAlterLeaedHome" class="com.jiafangHT.Action.HTAlterLeaedHomeAction">
+	   </action>
+	   <action name="HTAddLeaedHome" class="com.jiafangHT.Action.HTAddLeaedHomeAction">
+	   </action>
+	</package>
+</struts>    
